@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d115d22d-e9b8-4f68-816c-438e70655804" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mulesoftFlow" doc:id="f441fb17-2eef-45ec-a66f-9840a8e832e7" >
+		<http:listener doc:name="Listener" doc:id="d8537a38-1d03-412a-ad5e-e0d074b9b492" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="1644f554-5673-40a4-ad30-f36ef946d3a6" message="This is my first Project in Mule4"/>
+		<set-variable value="#[attributes.queryParams.name]" doc:name="Set Variable" doc:id="cc2317cf-862e-4466-a81e-4bae166338b0" variableName="name"/>
+		<set-payload value='#[vars.name]' doc:name="Set Payload" doc:id="b5eda2f2-abf8-44f8-9f18-62d125fe2004" />
+	</flow>
+</mule>
